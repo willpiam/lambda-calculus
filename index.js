@@ -54,6 +54,9 @@ const show = n => console.log(n)
 const B = f => g => a => f(g(a))           // Bluebird (composition)
 
 const showNumber = B(show)(jsnum)          // display chuch number (using Bluebird/composition)
+const ZERO = f => a => a                
+
+showNumber(ZERO)
 
 const ONE = f => a => f(a)
 showNumber(ONE)
@@ -68,12 +71,42 @@ showNumber(
 
 const ADD = n => k => n(SUCC)(k)
 
-showNumber(
-    ADD(ONE)(TWO)
-)
-
+const THREE = ADD(ONE)(TWO)
 const FIVE = SUCC(ADD(TWO)(TWO))
 const SEVEN = ADD(TWO)(FIVE) 
 
 showNumber(FIVE)
 showNumber(SEVEN)
+
+const MULT = B                              // Multiplication is just the composition of chuch numerals
+
+const TEN = MULT(TWO)(FIVE)
+
+showNumber(TEN)
+
+const ONE_HUNDRED = MULT(TEN)(TEN)
+
+showNumber(ONE_HUNDRED)
+
+const ONE_THOUSAND = MULT(TEN)(ONE_HUNDRED)
+
+showNumber(ONE_THOUSAND)
+
+const Th = a => f => f(a)                  // Thrush (hold an argument)
+
+const POW = Th                             // exponentiation is just the Thrush combinator 
+
+const FOUR = POW(TWO)(TWO)
+
+console.assert(jsnum(FOUR) === 4, 'FOUR is 4')
+showNumber(FOUR)
+
+const NINE = POW(THREE)(TWO)
+
+console.assert(jsnum(NINE) === 9, 'NINE is 9')
+showNumber(NINE)
+
+const ISZERO = n => n(K(FALSE))(TRUE)       // zero is false. if N is zero it picks TRUE, Otherwise it gives the kestrel of false 
+
+console.assert(ISZERO(FALSE) === TRUE, 'False should be zero')
+console.assert(ISZERO(ZERO) === TRUE, 'Zero should be zero')
