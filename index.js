@@ -110,3 +110,7 @@ const ISZERO = n => n(K(FALSE))(TRUE)       // zero is false. if N is zero it pi
 
 console.assert(ISZERO(FALSE) === TRUE, 'False should be zero')
 console.assert(ISZERO(ZERO) === TRUE, 'Zero should be zero')
+
+// const PRED = n => // subtraction 
+
+const V = a => b => f => f(a)(b)           // Vireo (pair)
