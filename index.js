@@ -111,6 +111,28 @@ const ISZERO = n => n(K(FALSE))(TRUE)       // zero is false. if N is zero it pi
 console.assert(ISZERO(FALSE) === TRUE, 'False should be zero')
 console.assert(ISZERO(ZERO) === TRUE, 'Zero should be zero')
 
-// const PRED = n => // subtraction 
+const V = a => b => f => f(a)(b)           // Vireo (pair // closures) ... a data structure
 
-const V = a => b => f => f(a)(b)           // Vireo (pair)
+console.assert(V(I)(M) (K) === I, 'The Vireo of the Idiot, the Mockingbird and the Kestrel is the Idiot')
+console.assert(V(I)(M) (KI) === M, 'The Vireo of the Idiot, the Mockingbird and the Kite is the Mockingbird')
+
+const FIRST = p => p(K)                    
+const SECOND = p => p(KI)
+
+console.assert(FIRST(V(I)(M)) === I, 'The FIRST of the Vireo of the Idiot and the Mockingbird is the Idiot')
+console.assert(SECOND(V(I)(M)) === M, 'The SECOND of the Vireo of the Idiot and the Mockingbird is the Mockingbird')
+
+const PHI = p => V (SECOND(p)) (SUCC(SECOND(p)))
+
+console.assert(jsnum(FIRST(PHI(V(ZERO)(FOUR)))) === 4, 'PHI failed test')
+console.assert(jsnum(SECOND(PHI(V(ZERO)(FOUR)))) === 5, 'PHI failed test 2')
+
+const PRED = n => FIRST(n(PHI)(V(ZERO)(ZERO)))
+
+console.assert(jsnum(PRED(FOUR)) === 3, 'The predecessor of FOUR is THREE')
+console.assert(jsnum(PRED(PRED(FOUR))) === 2, 'The predecessor of the predecessor of FOUR is TWO')
+
+const SUB = n => k => k(PRED)(n)
+
+// TODO: Test SUB
+
