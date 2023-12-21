@@ -134,12 +134,25 @@ console.assert(jsnum(PRED(PRED(FOUR))) === 2, 'The predecessor of the predecesso
 
 const SUB = n => k => k(PRED)(n)
 
-// TODO: Test SUB
+console.assert(jsnum(SUB(FOUR)(TWO)) === 2, 'FOUR minus TWO is TWO')
+console.assert(jsnum(SUB(FOUR)(FOUR)) === 0, 'FOUR minus FOUR is ZERO')
 
 const LEQ = n => k => ISZERO(SUB(n)(k))         // less than or equal to
 
-// TODO: Test LEQ
+console.assert(LEQ(FOUR)(FIVE) === TRUE, 'FOUR is less than or equal to FIVE')
+console.assert(LEQ(FOUR)(FOUR) === TRUE, 'FOUR is less than or equal to FOUR')
+console.assert(LEQ(FIVE)(FOUR) === FALSE, 'FIVE is not less than or equal to FOUR')
 
 const EQ = n => k => AND(LEQ(n)(k))(LEQ(k)(n))  // equallity
 
 console.assert(EQ(FOUR)(FOUR) === TRUE, 'FOUR is equal to FOUR')
+console.assert(EQ(TEN)(SUCC(NINE)) === TRUE, 'TEN is equal to SUCC(NINE)')
+console.assert(EQ(FOUR)(FIVE) === FALSE, 'FOUR is not equal to FIVE')
+
+const B1 = B(B)(B)                              // Blackbird (composition combinator)
+
+const GT = B1 (NOT) (LEQ)                       // greater than
+
+console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
+console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
+console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
