@@ -136,3 +136,10 @@ const SUB = n => k => k(PRED)(n)
 
 // TODO: Test SUB
 
+const LEQ = n => k => ISZERO(SUB(n)(k))         // less than or equal to
+
+// TODO: Test LEQ
+
+const EQ = n => k => AND(LEQ(n)(k))(LEQ(k)(n))  // equallity
+
+console.assert(EQ(FOUR)(FOUR) === TRUE, 'FOUR is equal to FOUR')
