@@ -156,3 +156,10 @@ const GT = B1 (NOT) (LEQ)                       // greater than
 console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
 console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
+
+const Z = f => (
+    ( x => f(() => x(x)) )
+    ( x => f(() => x(x)) )
+)
+
+// TODO: Test the Z combinator ... 
