@@ -12,3 +12,6 @@
 - https://x.com/g_lebec
 - https://youtu.be/3VQ382QG-y4
 - https://youtu.be/pAnLQ9jwN-E 
+
+### Enrico Piccinin
+- https://medium.com/swlh/y-and-z-combinators-in-javascript-lambda-calculus-with-real-code-31f25be934ec

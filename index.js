@@ -75,22 +75,19 @@ const THREE = ADD(ONE)(TWO)
 const FIVE = SUCC(ADD(TWO)(TWO))
 const SEVEN = ADD(TWO)(FIVE) 
 
-showNumber(FIVE)
-showNumber(SEVEN)
+console.assert(jsnum(THREE) === 3, 'THREE is 3')
+console.assert(jsnum(FIVE) === 5, 'FIVE is 5')
+console.assert(jsnum(SEVEN) === 7, 'SEVEN is 7')
 
 const MULT = B                              // Multiplication is just the composition of chuch numerals
 
 const TEN = MULT(TWO)(FIVE)
-
-showNumber(TEN)
-
 const ONE_HUNDRED = MULT(TEN)(TEN)
-
-showNumber(ONE_HUNDRED)
-
 const ONE_THOUSAND = MULT(TEN)(ONE_HUNDRED)
 
-showNumber(ONE_THOUSAND)
+console.assert(jsnum(TEN) === 10, 'TEN is 10')
+console.assert(jsnum(ONE_HUNDRED) === 100, 'ONE_HUNDRED is 100')
+console.assert(jsnum(ONE_THOUSAND) === 1000, 'ONE_THOUSAND is 1000')
 
 const Th = a => f => f(a)                  // Thrush (hold an argument)
 
@@ -110,6 +107,9 @@ const ISZERO = n => n(K(FALSE))(TRUE)       // zero is false. if N is zero it pi
 
 console.assert(ISZERO(FALSE) === TRUE, 'False should be zero')
 console.assert(ISZERO(ZERO) === TRUE, 'Zero should be zero')
+console.assert(ISZERO(ONE) === FALSE, 'One should not be zero')
+console.assert(ISZERO(TWO) === FALSE, 'Two should not be zero')
+console.assert(ISZERO(FOUR) === FALSE, 'FOUR should not be zero')
 
 const V = a => b => f => f(a)(b)           // Vireo (pair // closures) ... a data structure
 
@@ -157,9 +157,11 @@ console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
 console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
-const Z = f => (
-    ( x => f(() => x(x)) )
-    ( x => f(() => x(x)) )
-)
+// FACTORIAL via the Z combinator
+const IF = c => t => f => c(t)(f)              // IF combinator
 
-// TODO: Test the Z combinator ... 
+const Z = f => (x => f(y => x(x)(y))) (x => f(y => x(x)(y)))
+
+const FACT = Z(f => n => IF(LEQ(n)(ONE))(ONE)(MULT(n)(f(PRED(n)))))
+
+console.assert(jsnum(FACT(FOUR)) === 24, 'The factorial of FOUR is 24')
