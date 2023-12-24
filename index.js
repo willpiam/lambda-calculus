@@ -159,7 +159,10 @@ console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
 const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v)))
 
-const pseudoFact = s =>  n => GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
+// const pseudoFact = s =>  n => GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
+const pseudoFact = self => n => ISZERO(n)
+    (K(ONE))
+    (MULT(n)(self(PRED(n))))
 
 const FAC = Z(pseudoFact)
 console.log('FAC: ', FAC.toString())
@@ -169,3 +172,4 @@ console.log('A. ', f4);
 console.log('B. ', f4.toString()); 
 console.log('C. ', jsnum(f4)); 
 console.log('D. ', jsnum(f4).toString()); 
+showNumber(f4)
