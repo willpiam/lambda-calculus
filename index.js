@@ -157,11 +157,22 @@ console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
 console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
-// FACTORIAL via the Z combinator
-const IF = c => t => f => c(t)(f)              // IF combinator
+const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v)))
 
-const Z = f => (x => f(y => x(x)(y))) (x => f(y => x(x)(y)))
+const pseudoFact = s =>  {
+    console.log(`\ts: ${s}`)
+    return n => {
+        console.log(`\t\tn: ${n}`)
+        return GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
+        // return ( LEQ(n)(ONE) ) ( ONE ) ( MULT(n)(s(PRED(n))) ) 
+    }
+}
 
-const FACT = Z(f => n => IF(LEQ(n)(ONE))(ONE)(MULT(n)(f(PRED(n)))))
+const FAC = Z(pseudoFact)
+console.log('FAC: ', FAC.toString())
+const f4 = FAC(FOUR)
 
-console.assert(jsnum(FACT(FOUR)) === 24, 'The factorial of FOUR is 24')
+console.log('A. ', f4); 
+console.log('B. ', f4.toString()); 
+console.log('C. ', jsnum(f4)); 
+console.log('D. ', jsnum(f4).toString()); 
