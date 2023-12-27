@@ -8,7 +8,8 @@ const K = a => b => a                      // Kestrel (const)
 
 console.assert(K(I)(M) === I, 'The Kestrel of the Idiot and the Mockingbird is the Idiot')
 
-const KI = K(I)                             // Kite (or λab.b)
+// const KI = K(I)                             // Kite (or λab.b)
+const KI = a => b => b                         // Kite (or λab.b)
 
 console.assert(KI(K)(M) === M, 'The Kite of the Mockingbird is the Mockingbird')
 
@@ -129,6 +130,7 @@ console.assert(jsnum(SECOND(PHI(V(ZERO)(FOUR)))) === 5, 'PHI failed test 2')
 
 const PRED = n => FIRST(n(PHI)(V(ZERO)(ZERO)))
 
+console.assert(jsnum(PRED(ONE)) === 0, 'The predecessor of ONE is ZERO')
 console.assert(jsnum(PRED(FOUR)) === 3, 'The predecessor of FOUR is THREE')
 console.assert(jsnum(PRED(PRED(FOUR))) === 2, 'The predecessor of the predecessor of FOUR is TWO')
 
@@ -161,11 +163,10 @@ const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v
 
 // const pseudoFact = s =>  n => GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
 const pseudoFact = self => n => ISZERO(n)
-    (K(ONE))
+    (ONE)
     (MULT(n)(self(PRED(n))))
 
 const FAC = Z(pseudoFact)
-console.log('FAC: ', FAC.toString())
 const f4 = FAC(FOUR)
 
 console.log('A. ', f4); 
