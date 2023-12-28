@@ -17,8 +17,10 @@ const C = f => a => b => f(b)(a)           // Cardinal (flip)
 
 console.assert(C(K)(I)(M) === M, 'The Cardinal of the Kestrel, the Idiot and the Mockingbird is the Mockingbird')
 
-const TRUE = K
-const FALSE = KI
+// const TRUE = K
+const TRUE = a => b => a
+// const FALSE = KI
+const FALSE = a => b => b
 TRUE.inspect = () => 'TRUE [K]'
 FALSE.inspect = () => 'FALSE [KI]'
 
@@ -66,9 +68,7 @@ const TWO = f => a => f(f(a))
 
 const SUCC = n => f => a => f(n(f)(a))
 
-showNumber(
-    SUCC(ONE)
-)
+console.assert(jsnum(SUCC(ONE)) === 2, 'SUCC(ONE) is 2')
 
 const ADD = n => k => n(SUCC)(k)
 
@@ -122,6 +122,8 @@ const SECOND = p => p(KI)
 
 console.assert(FIRST(V(I)(M)) === I, 'The FIRST of the Vireo of the Idiot and the Mockingbird is the Idiot')
 console.assert(SECOND(V(I)(M)) === M, 'The SECOND of the Vireo of the Idiot and the Mockingbird is the Mockingbird')
+console.assert(FIRST(V('a')('b')) === 'a', 'The FIRST of the Vireo of "a" and "b" is "a"')
+console.assert(SECOND(V('a')('b')) === 'b', 'The SECOND of the Vireo of "a" and "b" is "b"')
 
 const PHI = p => V (SECOND(p)) (SUCC(SECOND(p)))
 
@@ -159,12 +161,17 @@ console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
 console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
-const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v)))
-
+// const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v)))
+const Z = f => (x => f(v => x(x)(v)))(x => f ( v => x(x)(v)))
 // const pseudoFact = s =>  n => GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
-const pseudoFact = self => n => ISZERO(n)
-    (ONE)
-    (MULT(n)(self(PRED(n))))
+// const pseudoFact = self => n => ISZERO(n)
+//     (() => ONE)
+//     (() => MULT(n)(self(PRED(n))))
+const pseudoFact = F => n => {
+    // console.log("n: ", n)
+    // console.log("ISZERO(n): ", ISZERO(n))
+    return ISZERO(n) (ONE)(MULT(n)(F(PRED(n))))
+}
 
 const FAC = Z(pseudoFact)
 const f4 = FAC(FOUR)
