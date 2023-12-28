@@ -1,4 +1,3 @@
-
 const I = a => a                            // Idiot (identity)
 const M = f => f(f)                         // Mockingbird  (self-application)
 
@@ -52,6 +51,8 @@ const jsnum = n => n(x => x + 1)(0)
 const show = n => console.log(n)
 
 const B = f => g => a => f(g(a))           // Bluebird (composition)
+
+console.assert(B(NOT)(NOT)(TRUE) === TRUE, 'The Bluebird of NOT and NOT of TRUE is TRUE')
 
 const showNumber = B(show)(jsnum)          // display chuch number (using Bluebird/composition)
 const ZERO = f => a => a
@@ -160,8 +161,8 @@ console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
 const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
 
-// const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
-const pseudoFact = F => n => ISZERO(n)(() => ONE)(() => MULT(n)(F(PRED(n))))() // This also works but it feels weird having a function with no arguments in lambda calculus 
+const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
+// const pseudoFact = F => n => ISZERO(n)(() => ONE)(() => MULT(n)(F(PRED(n))))() // This also works but it feels weird having a function with no arguments in lambda calculus 
 const FAC = Z(pseudoFact)
 
 const TWENTYFOUR = FAC(FOUR)
@@ -171,4 +172,17 @@ showNumber(TWENTYFOUR)
 const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
 showNumber(FIVETHOUSANDFORTY)
+
+const pseudoSumRange = F => m => n => ISZERO(n)(a => ZERO)(a => ADD(n)(F(m)(PRED(n))))(I)
+const SUMRANGE = Z(pseudoSumRange)
+
+console.assert(EQ(SUMRANGE(ONE)(FOUR))(TEN) === TRUE, 'The sum of the range ONE to FOUR is TEN')
+
+const TWENTYEIGHT = SUMRANGE(ONE)(SEVEN)
+showNumber(TWENTYEIGHT)
+console.assert(jsnum(TWENTYEIGHT) === 28, 'The sum of the range ONE to SEVEN is 28')
+
+const FIVETHOUSANDFIFTY = SUMRANGE(ONE)(ONE_HUNDRED)
+showNumber(FIVETHOUSANDFIFTY)
+console.assert(jsnum(FIVETHOUSANDFIFTY) === 5050, 'The sum of the range ONE to ONE_HUNDRED is 5050')
 
