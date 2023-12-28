@@ -163,7 +163,7 @@ console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
 const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
 
-const pseudoFact = F => n => (ISZERO(n))(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
+const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
 const FAC = Z(pseudoFact)
 
 const TWENTYFOUR = FAC(FOUR)
@@ -173,3 +173,4 @@ showNumber(TWENTYFOUR)
 const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
 showNumber(FIVETHOUSANDFORTY)
+
