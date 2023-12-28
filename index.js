@@ -8,8 +8,7 @@ const K = a => b => a                      // Kestrel (const)
 
 console.assert(K(I)(M) === I, 'The Kestrel of the Idiot and the Mockingbird is the Idiot')
 
-// const KI = K(I)                             // Kite (or λab.b)
-const KI = a => b => b                         // Kite (or λab.b)
+const KI = K(I)                             // Kite (or λab.b)
 
 console.assert(KI(K)(M) === M, 'The Kite of the Mockingbird is the Mockingbird')
 
@@ -17,10 +16,8 @@ const C = f => a => b => f(b)(a)           // Cardinal (flip)
 
 console.assert(C(K)(I)(M) === M, 'The Cardinal of the Kestrel, the Idiot and the Mockingbird is the Mockingbird')
 
-// const TRUE = K
-const TRUE = a => b => a
-// const FALSE = KI
-const FALSE = a => b => b
+const TRUE = K
+const FALSE = KI
 TRUE.inspect = () => 'TRUE [K]'
 FALSE.inspect = () => 'FALSE [KI]'
 
@@ -163,7 +160,8 @@ console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
 const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
 
-const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
+// const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
+const pseudoFact = F => n => ISZERO(n)(() => ONE)(() => MULT(n)(F(PRED(n))))() // This also works but it feels weird having a function with no arguments in lambda calculus 
 const FAC = Z(pseudoFact)
 
 const TWENTYFOUR = FAC(FOUR)
@@ -174,10 +172,3 @@ const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
 showNumber(FIVETHOUSANDFORTY)
 
-const pseudoCount = F => n => {
-    console.log(`n is "${n}" or "${jsnum(n)}"`)
-    return GT(FIVE)(n)(a => ONE)(a => SUCC(F(SUCC(n))))
-}
-
-const COUNT = Z(pseudoCount)
-COUNT(ONE)
