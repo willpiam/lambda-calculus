@@ -57,7 +57,7 @@ const show = n => console.log(n)
 const B = f => g => a => f(g(a))           // Bluebird (composition)
 
 const showNumber = B(show)(jsnum)          // display chuch number (using Bluebird/composition)
-const ZERO = f => a => a                
+const ZERO = f => a => a
 
 showNumber(ZERO)
 
@@ -74,7 +74,7 @@ const ADD = n => k => n(SUCC)(k)
 
 const THREE = ADD(ONE)(TWO)
 const FIVE = SUCC(ADD(TWO)(TWO))
-const SEVEN = ADD(TWO)(FIVE) 
+const SEVEN = ADD(TWO)(FIVE)
 
 console.assert(jsnum(THREE) === 3, 'THREE is 3')
 console.assert(jsnum(FIVE) === 5, 'FIVE is 5')
@@ -114,10 +114,10 @@ console.assert(ISZERO(FOUR) === FALSE, 'FOUR should not be zero')
 
 const V = a => b => f => f(a)(b)           // Vireo (pair // closures) ... a data structure
 
-console.assert(V(I)(M) (K) === I, 'The Vireo of the Idiot, the Mockingbird and the Kestrel is the Idiot')
-console.assert(V(I)(M) (KI) === M, 'The Vireo of the Idiot, the Mockingbird and the Kite is the Mockingbird')
+console.assert(V(I)(M)(K) === I, 'The Vireo of the Idiot, the Mockingbird and the Kestrel is the Idiot')
+console.assert(V(I)(M)(KI) === M, 'The Vireo of the Idiot, the Mockingbird and the Kite is the Mockingbird')
 
-const FIRST = p => p(K)                    
+const FIRST = p => p(K)
 const SECOND = p => p(KI)
 
 console.assert(FIRST(V(I)(M)) === I, 'The FIRST of the Vireo of the Idiot and the Mockingbird is the Idiot')
@@ -125,7 +125,7 @@ console.assert(SECOND(V(I)(M)) === M, 'The SECOND of the Vireo of the Idiot and 
 console.assert(FIRST(V('a')('b')) === 'a', 'The FIRST of the Vireo of "a" and "b" is "a"')
 console.assert(SECOND(V('a')('b')) === 'b', 'The SECOND of the Vireo of "a" and "b" is "b"')
 
-const PHI = p => V (SECOND(p)) (SUCC(SECOND(p)))
+const PHI = p => V(SECOND(p))(SUCC(SECOND(p)))
 
 console.assert(jsnum(FIRST(PHI(V(ZERO)(FOUR)))) === 4, 'PHI failed test')
 console.assert(jsnum(SECOND(PHI(V(ZERO)(FOUR)))) === 5, 'PHI failed test 2')
@@ -155,29 +155,16 @@ console.assert(EQ(FOUR)(FIVE) === FALSE, 'FOUR is not equal to FIVE')
 
 const B1 = B(B)(B)                              // Blackbird (composition combinator)
 
-const GT = B1 (NOT) (LEQ)                       // greater than
+const GT = B1(NOT)(LEQ)                       // greater than
 
 console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
 console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
-// const Z = pseudoRec => (x => pseudoRec(v => x(x)(v)))(x => pseudoRec(v => x(x)(v)))
-const Z = f => (x => f(v => x(x)(v)))(x => f ( v => x(x)(v)))
-// const pseudoFact = s =>  n => GT(n)(ONE) (() => MULT(n)(s(PRED(n))) ) ( ONE )
-// const pseudoFact = self => n => ISZERO(n)
-//     (() => ONE)
-//     (() => MULT(n)(self(PRED(n))))
-const pseudoFact = F => n => {
-    // console.log("n: ", n)
-    // console.log("ISZERO(n): ", ISZERO(n))
-    return ISZERO(n) (ONE)(MULT(n)(F(PRED(n))))
-}
+const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
+
+const pseudoFact = F => n => (ISZERO(n))(a => ONE)(a => MULT(n)(F(PRED(n))))(I)
 
 const FAC = Z(pseudoFact)
-const f4 = FAC(FOUR)
 
-console.log('A. ', f4); 
-console.log('B. ', f4.toString()); 
-console.log('C. ', jsnum(f4)); 
-console.log('D. ', jsnum(f4).toString()); 
-showNumber(f4)
+console.assert(jsnum(FAC(FOUR)) === 24, 'The factorial of FOUR is 24')
