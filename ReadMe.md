@@ -14,3 +14,5 @@
 - https://youtu.be/pAnLQ9jwN-E 
 - https://github.com/glebec/lambda-talk/tree/master
 
+### Wikipedia
+- https://en.wikipedia.org/wiki/Fixed-point_combinator

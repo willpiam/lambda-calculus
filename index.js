@@ -155,7 +155,7 @@ console.assert(EQ(FOUR)(FIVE) === FALSE, 'FOUR is not equal to FIVE')
 
 const B1 = B(B)(B)                              // Blackbird (composition combinator)
 
-const GT = B1(NOT)(LEQ)                       // greater than
+const GT = B1(NOT)(LEQ)                         // greater than
 
 console.assert(GT(FOUR)(FIVE) === FALSE, 'FOUR is not greater than FIVE')
 console.assert(GT(FIVE)(FOUR) === TRUE, 'FIVE is greater than FOUR')
@@ -166,6 +166,10 @@ const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
 const pseudoFact = F => n => (ISZERO(n))(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
 const FAC = Z(pseudoFact)
 
-console.assert(jsnum(FAC(FOUR)) === 24, 'The factorial of FOUR is 24')
+const TWENTYFOUR = FAC(FOUR)
+console.assert(jsnum(TWENTYFOUR) === 24, 'The factorial of FOUR is 24')
+showNumber(TWENTYFOUR)
+
 const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
+showNumber(FIVETHOUSANDFORTY)
