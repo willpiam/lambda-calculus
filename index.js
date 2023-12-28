@@ -174,3 +174,10 @@ const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
 showNumber(FIVETHOUSANDFORTY)
 
+const pseudoCount = F => n => {
+    console.log(`n is "${n}" or "${jsnum(n)}"`)
+    return GT(FIVE)(n)(a => ONE)(a => SUCC(F(SUCC(n))))
+}
+
+const COUNT = Z(pseudoCount)
+COUNT(ONE)
