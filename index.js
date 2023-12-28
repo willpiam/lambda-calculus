@@ -167,4 +167,5 @@ const pseudoFact = F => n => (ISZERO(n))(a => ONE)(a => MULT(n)(F(PRED(n))))(I)
 const FAC = Z(pseudoFact)
 
 console.assert(jsnum(FAC(FOUR)) === 24, 'The factorial of FOUR is 24')
-showNumber(FAC(SEVEN))
+const FIVETHOUSANDFORTY = FAC(SEVEN)
+console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
