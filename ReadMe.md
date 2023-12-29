@@ -15,6 +15,8 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | ONE          | `ONE := λfa.fa`                            | Church numeral ONE                                   |
 | TWO          | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
 | THREE        | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
+| Starling     | `S := λabc.ac(bc)`                         |                                                      |
+|Vireo          | ``
 
 ## Resources
 
@@ -29,10 +31,14 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 
 ### Me
 
-You can follow my on 𝕏 --> https://x.com/william00000010
+You can follow my on 𝕏 --> [@william00000010](https://x.com/william00000010)
 
 Tip me on Cardano --> $wildoy
 
-ENS --> williamdoyle.eth
+ENS --> [williamdoyle.eth](https://app.ens.domains/williamdoyle.eth)
 
-Finally visit https://projects.williamdoyle.ca/ to explore my other projects. 
+Finally visit [projects.williamdoyle.ca](https://projects.williamdoyle.ca/) to explore my other projects. 
+
+### Questions
+
+- What is the difference between **Lambda Calculus** and **Combinatory Logic**?

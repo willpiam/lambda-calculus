@@ -186,3 +186,13 @@ const FIVETHOUSANDFIFTY = SUMRANGE(ONE)(ONE_HUNDRED)
 showNumber(FIVETHOUSANDFIFTY)
 console.assert(jsnum(FIVETHOUSANDFIFTY) === 5050, 'The sum of the range ONE to ONE_HUNDRED is 5050')
 
+const S = a => b => c => (a(c))(b(c))           // Starling 
+
+{   // The Starling And The Kestrel Sing Some Songs 
+    const SK_I = S(K)(K)                                        // The Identity Song
+
+    console.assert(SK_I(SK_I) === SK_I, 'The Identity of Identity is the Identity')
+
+    // const SK_V = 
+
+}
