@@ -189,10 +189,22 @@ console.assert(jsnum(FIVETHOUSANDFIFTY) === 5050, 'The sum of the range ONE to O
 const S = a => b => c => (a(c))(b(c))           // Starling 
 
 {   // The Starling And The Kestrel Sing Some Songs 
-    const SK_I = S(K)(K)                                        // The Identity Song
+    const SK_I = S(K)(K)                                        // The Identity
 
     console.assert(SK_I(SK_I) === SK_I, 'The Identity of Identity is the Identity')
 
-    // const SK_V = 
+    const SK_KI = K(SK_I)                                       // The Kite
+    console.assert(SK_KI('first')('second') === 'second', 'The Kite returns the second value')
 
+    const SK_M = S (SK_I) (SK_I)                                // The Mockingbird
+    console.assert(SK_M(SK_I) === SK_I, 'The Mocking bird of the Idiot is the Idiot')
+
+    const SK_V = (S(K((S((S(K((S(K(S)))(K))))(S)))(K(K)))))   ((S(K(S((S(K))(K)))))(K)) // The Vireo
+
+    console.assert(SK_V(SK_I)(SK_M)(K) === SK_I, 'The Vireo of the Idiot, the Mockingbird and the Kestrel is the Idiot')
+    console.assert(SK_V(SK_I)(SK_M)(SK_KI) === SK_M, 'The Vireo of the Idiot, the Mockingbird and the Kite is the Mockingbird')
+    console.assert(SK_V('first')('second')(K) === 'first', 'The Kestrel selects the first thing in the Vireo')
+    console.assert(SK_V('first')('second')(SK_KI) === 'second', 'The Kite selects the second thing in the Vireo')
+
+    // ... as it turns out, together the Starling and the Kestrel can sing any song --> SK Combinator Calculus
 }

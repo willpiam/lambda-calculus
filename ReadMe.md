@@ -16,7 +16,7 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | TWO          | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
 | THREE        | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
 | Starling     | `S := λabc.ac(bc)`                         |                                                      |
-|Vireo          | ``
+| Vireo        | ``
 
 ## Resources
 
@@ -25,20 +25,22 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 - https://youtu.be/3VQ382QG-y4
 - https://youtu.be/pAnLQ9jwN-E 
 - https://github.com/glebec/lambda-talk/tree/master
+- [Vireo in SK Combinator Calculus](https://speakerdeck.com/glebec/lambda-calc-talk-smartly-dot-io-version?slide=197)
 
 ### Wikipedia
-- https://en.wikipedia.org/wiki/Fixed-point_combinator
-
-### Me
-
-You can follow my on 𝕏 --> [@william00000010](https://x.com/william00000010)
-
-Tip me on Cardano --> $wildoy
-
-ENS --> [williamdoyle.eth](https://app.ens.domains/williamdoyle.eth)
-
-Finally visit [projects.williamdoyle.ca](https://projects.williamdoyle.ca/) to explore my other projects. 
+- [Fixed-point Combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator)
+- [SKI Combinator Calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus)
 
 ### Questions
 
 - What is the difference between **Lambda Calculus** and **Combinatory Logic**?
+
+### Me
+
+Follow my on 𝕏  [@william00000010](https://x.com/william00000010)
+
+Cardano --> $wildoy
+
+ENS --> [williamdoyle.eth](https://app.ens.domains/williamdoyle.eth)
+
+Finally visit [projects.williamdoyle.ca](https://projects.williamdoyle.ca/) to explore my other projects. 
