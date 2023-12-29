@@ -16,7 +16,8 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | TWO          | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
 | THREE        | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
 | Starling     | `S := λabc.ac(bc)`                         |                                                      |
-| Vireo        | ``
+| Vireo        | ``                                         | |
+| Iota         | `IOTA := λf.(f λabc.ac(bc))λxy.x`          | |
 
 ## Resources
 

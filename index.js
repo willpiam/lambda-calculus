@@ -1,3 +1,8 @@
+const startTimer = () => {
+    const start = Date.now()
+    return () => Date.now() - start
+}
+const timer = startTimer()
 const I = a => a                            // Idiot (identity)
 const M = f => f(f)                         // Mockingbird  (self-application)
 
@@ -6,6 +11,8 @@ console.assert(M(I) === I, 'The Mocking bird of the Idiot is the Idiot')
 const K = a => b => a                      // Kestrel (const)
 
 console.assert(K(I)(M) === I, 'The Kestrel of the Idiot and the Mockingbird is the Idiot')
+console.assert(K(K)('anything') === K, 'const const applied to anything is const')
+console.assert(M(K)('anything') === K, 'Mockingbird applied to the Kestrel gives the Kestrel of the Kestral or "const const" ')
 
 const KI = K(I)                             // Kite (or λab.b)
 
@@ -188,6 +195,8 @@ console.assert(jsnum(FIVETHOUSANDFIFTY) === 5050, 'The sum of the range ONE to O
 
 const S = a => b => c => (a(c))(b(c))           // Starling 
 
+// TODO: find a couple of simple tests to prove the Starling works .. besides SK Combinator Calculus
+
 {   // The Starling And The Kestrel Sing Some Songs 
     const SK_I = S(K)(K)                                        // The Identity
 
@@ -198,6 +207,7 @@ const S = a => b => c => (a(c))(b(c))           // Starling
 
     const SK_M = S (SK_I) (SK_I)                                // The Mockingbird
     console.assert(SK_M(SK_I) === SK_I, 'The Mocking bird of the Idiot is the Idiot')
+    console.assert(SK_M(K)('anything') === K, 'Mockingbird applied to the Kestrel gives the Kestrel of the Kestral or "const const" ')
 
     const SK_V = (S(K((S((S(K((S(K(S)))(K))))(S)))(K(K)))))   ((S(K(S((S(K))(K)))))(K)) // The Vireo
 
@@ -207,4 +217,26 @@ const S = a => b => c => (a(c))(b(c))           // Starling
     console.assert(SK_V('first')('second')(SK_KI) === 'second', 'The Kite selects the second thing in the Vireo')
 
     // ... as it turns out, together the Starling and the Kestrel can sing any song --> SK Combinator Calculus
+}
+console.log(`Elapsed time: ${timer()/1000}s`)
+
+const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
+
+{   // Iota can sing any song with itself
+    const IOTA_I = IOTA(IOTA)
+
+    console.assert(IOTA_I(IOTA_I) === IOTA_I, 'The Identity of Identity is the Identity')
+
+    const IOTA_K = IOTA(IOTA(IOTA(IOTA)))
+
+    console.assert(IOTA_K('first')('second') === 'first', 'The Kestrel returns the second value')
+
+    const IOTA_KI = IOTA_K(IOTA_I)                                       // The Kite
+    console.assert(IOTA_KI('first')('second') === 'second', 'The Kite returns the second value')
+
+    const IOTA_S = IOTA(IOTA(IOTA(IOTA(IOTA)))) // needs testing
+
+
+
+
 }
