@@ -26,3 +26,13 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 
 ### Wikipedia
 - https://en.wikipedia.org/wiki/Fixed-point_combinator
+
+### Me
+
+You can follow my on 𝕏 --> https://x.com/william00000010
+
+Tip me on Cardano --> $wildoy
+
+ENS --> williamdoyle.eth
+
+Finally visit https://projects.williamdoyle.ca/ to explore my other projects. 
