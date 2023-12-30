@@ -11,12 +11,14 @@ console.assert(M(I) === I, 'The Mocking bird of the Idiot is the Idiot')
 const K = a => b => a                      // Kestrel (const)
 
 console.assert(K(I)(M) === I, 'The Kestrel of the Idiot and the Mockingbird is the Idiot')
+console.assert(K('first')('second') === 'first', 'The Kestrel returns the first value')
 console.assert(K(K)('anything') === K, 'const const applied to anything is const')
 console.assert(M(K)('anything') === K, 'Mockingbird applied to the Kestrel gives the Kestrel of the Kestral or "const const" ')
 
 const KI = K(I)                             // Kite (or λab.b)
 
-console.assert(KI(K)(M) === M, 'The Kite of the Mockingbird is the Mockingbird')
+console.assert(KI(K)(M) === M, 'The Kite of the Kestrel and the Mockingbird is the Mockingbird')
+console.assert(KI('first')('second') === 'second', 'The Kite returns the second value')
 
 const C = f => a => b => f(b)(a)           // Cardinal (flip)
 
