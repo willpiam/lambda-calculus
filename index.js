@@ -246,7 +246,6 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
         const IOTA_SK_KI = IOTA_K(IOTA_SK_I)                                       // The Kite
         console.assert(IOTA_SK_KI('first')('second') === 'second', 'The Kite returns the second value')
     }
-
 }
 
 // pseudoDiv := λc.λn.λm.λf.λx(λd. IsZero d(0 f x)(f(c d m f x)))(minus n m )
@@ -258,5 +257,29 @@ console.assert(jsnum(DIVIDE(FOUR)(FOUR)) === 1, 'FOUR divided by FOUR is ONE')
 console.assert(jsnum(DIVIDE(TEN)(TWO)) === 5, 'TEN divided by TWO is FIVE')
 console.assert(jsnum(DIVIDE(TEN)(THREE)) === 3, 'TEN divided by THREE is THREE')  
 console.assert(jsnum(DIVIDE(ONE_HUNDRED)(TEN)) === 10, 'ONE_HUNDRED divided by TEN is TEN')
+
+const MOD = n => m => SUB(n)(MULT(m)(DIVIDE(n)(m)))
+
+console.assert(jsnum(MOD(FOUR)(TWO)) === 0, 'FOUR mod TWO is ZERO')
+console.assert(jsnum(MOD(FOUR)(THREE)) === 1, 'FOUR mod THREE is ONE')
+console.assert(jsnum(MOD(TEN)(THREE)) === 1, 'TEN mod THREE is ONE')
+
+const EVEN = n => ISZERO(MOD(n)(TWO))
+
+console.assert(EVEN(ZERO) === TRUE, 'ZERO is even')
+console.assert(EVEN(ONE) === FALSE, 'ONE is not even')
+console.assert(EVEN(TWO) === TRUE, 'TWO is even')
+console.assert(EVEN(FOUR) === TRUE, 'FOUR is even')
+console.assert(EVEN(FIVE) === FALSE, 'FIVE is not even')
+
+const ODD = B(NOT)(EVEN)
+
+console.assert(ODD(ZERO) === FALSE, 'ZERO is not odd')
+console.assert(ODD(ONE) === TRUE, 'ONE is odd')
+console.assert(ODD(ONE_HUNDRED) === FALSE, 'ONE HUNDRED is not odd')
+
+const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
+
+console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
 console.log(`Elapsed time: ${timer()/1000}s`)
