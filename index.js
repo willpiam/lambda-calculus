@@ -1,6 +1,6 @@
 const startTimer = () => {
     const start = Date.now()
-    return () => Date.now() - start
+    return () => (Date.now() - start) / 1000
 }
 const timer = startTimer()
 const I = a => a                            // Idiot (identity)
@@ -185,7 +185,7 @@ const FIVETHOUSANDFORTY = FAC(SEVEN)
 console.assert(jsnum(FIVETHOUSANDFORTY) === 5040, 'The factorial of SEVEN is 5040')
 showNumber(FIVETHOUSANDFORTY)
 
-const pseudoSumRange = F => m => n => ISZERO(n)(a => ZERO)(a => ADD(n)(F(m)(PRED(n))))(I)
+const pseudoSumRange = F => m => n => ISZERO(n)(() => ZERO)(() => ADD(n)(F(m)(PRED(n))))()
 const SUMRANGE = Z(pseudoSumRange)
 
 console.assert(EQ(SUMRANGE(ONE)(FOUR))(TEN) === TRUE, 'The sum of the range ONE to FOUR is TEN')
@@ -249,7 +249,7 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
 }
 
 // pseudoDiv := λc.λn.λm.λf.λx(λd. IsZero d(0 f x)(f(c d m f x)))(minus n m )
-const pseudoDiv = c => n => m => f => x => (d => ISZERO(d)(a => ZERO(f)(x))(a => f(c(d)(m)(f)(x))))(SUB(n)(m))(I)
+const pseudoDiv = c => n => m => f => x => (d => ISZERO(d)(() => ZERO(f)(x))(() => f(c(d)(m)(f)(x))))(SUB(n)(m))()
 const DIVIDE = n => Z(pseudoDiv)(SUCC(n))
 
 console.assert(jsnum(DIVIDE(FOUR)(TWO)) === 2, 'FOUR divided by TWO is TWO')
@@ -282,31 +282,34 @@ const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
 
 console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
-const pesudoPrime = F => m => n => {
-    console.log(`m: ${jsnum(m)} n: ${jsnum(n)}`)
-    return (EQ(ONE)(M))
+const pesudoPrime = F => m => n => ISZERO(PRED(m))
         (() => TRUE)
-        (() =>
-            (EQ(ZERO)(MOD(n)(m)))
+        (
+            (ISZERO(MOD(n)(m)))
                 (() => FALSE)
                 (() => F(PRED(m))(n))
-        )()()
-}
+        )()
 
-const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
+// const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
+const PRIME = n => Z(pesudoPrime)(SUCC(DIVIDE(n)(TWO)))(n)
 
 const SIX = MULT(TWO)(THREE)
 const EIGHT = MULT(TWO)(FOUR)
 const ELEVEN = SUCC(TEN)
 
-console.log(PRIME(FIVE).toString())
-
 console.assert(PRIME(FIVE) === TRUE, 'FIVE is prime')
-// console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
-// console.assert(PRIME(SEVEN) === TRUE, 'SEVEN is prime')
-// console.assert(PRIME(EIGHT) === FALSE, 'EIGHT is not prime')
-// console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
-// console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
-// console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
+console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
+console.assert(PRIME(SEVEN) === TRUE, 'SEVEN is prime')
+console.assert(PRIME(EIGHT) === FALSE, 'EIGHT is not prime')
+console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
+console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
+console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
 
-console.log(`Elapsed time: ${timer() / 1000}s`) 
+const ONE_HUNDRED_SEVENTY_THREE = ADD(ADD(ONE_HUNDRED)(MULT(TEN)(SEVEN)))(THREE)
+showNumber(ONE_HUNDRED_SEVENTY_THREE)
+
+console.log(`Elapsed time: ${timer()}s`) 
+
+console.assert(PRIME(ONE_HUNDRED_SEVENTY_THREE) === TRUE, 'ONE_HUNDRED_SEVENTY_THREE is prime')
+
+console.log(`Elapsed time: ${timer()}s`) 
