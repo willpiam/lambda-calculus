@@ -250,12 +250,13 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
 }
 
 // pseudoDiv := λc.λn.λm.λf.λx(λd. IsZero d(0 f x)(f(c d m f x)))(minus n m )
-const DIV = c => n => m => f => x => (d => ISZERO(d)(() => ZERO(f)(x))(() => f(c(d)(m)(f)(x))))(SUB(n)(m))()
-const DIVIDE1 = Z(DIV)
-const DIVIDE = n => DIVIDE1 (SUCC(n))
+const pseudoDiv = c => n => m => f => x => (d => ISZERO(d)(a => ZERO(f)(x))(a => f(c(d)(m)(f)(x))))(SUB(n)(m))(I)
+const DIVIDE = n => Z(pseudoDiv)(SUCC(n))
 
 console.assert(jsnum(DIVIDE(FOUR)(TWO)) === 2, 'FOUR divided by TWO is TWO')
 console.assert(jsnum(DIVIDE(FOUR)(FOUR)) === 1, 'FOUR divided by FOUR is ONE')
 console.assert(jsnum(DIVIDE(TEN)(TWO)) === 5, 'TEN divided by TWO is FIVE')
+console.assert(jsnum(DIVIDE(TEN)(THREE)) === 3, 'TEN divided by THREE is THREE')  
+console.assert(jsnum(DIVIDE(ONE_HUNDRED)(TEN)) === 10, 'ONE_HUNDRED divided by TEN is TEN')
 
 console.log(`Elapsed time: ${timer()/1000}s`)
