@@ -31,6 +31,7 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 ### Wikipedia
 - [Fixed-point Combinator](https://en.wikipedia.org/wiki/Fixed-point_combinator)
 - [SKI Combinator Calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus)
+- [Division with Church Numerals](https://en.wikipedia.org/wiki/Church_encoding#Division)
 
 ### Questions
 

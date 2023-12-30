@@ -101,6 +101,9 @@ const Th = a => f => f(a)                  // Thrush (hold an argument)
 
 const POW = Th                             // exponentiation is just the Thrush combinator 
 
+console.assert(jsnum(POW(TWO)(THREE)) === 8, 'TWO to the power of THREE is 8')
+console.assert(jsnum(POW(THREE)(TWO)) === 9, 'THREE to the power of TWO is 9')
+
 const FOUR = POW(TWO)(TWO)
 
 console.assert(jsnum(FOUR) === 4, 'FOUR is 4')
@@ -245,5 +248,14 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
     }
 
 }
+
+// pseudoDiv := λc.λn.λm.λf.λx(λd. IsZero d(0 f x)(f(c d m f x)))(minus n m )
+// const pseudoDiv = c => n => m => f => x => (d => ISZERO(d)(a => ZERO)(a => f(c(d)(m)(f)(x))))(SUB(n)(m))
+// const DIV = Z(pseudoDiv)
+
+// {
+//     const r = DIV(TEN)(TWO)
+//     showNumber(r)
+// }
 
 console.log(`Elapsed time: ${timer()/1000}s`)
