@@ -195,8 +195,6 @@ console.assert(jsnum(FIVETHOUSANDFIFTY) === 5050, 'The sum of the range ONE to O
 
 const S = a => b => c => (a(c))(b(c))           // Starling 
 
-// TODO: find a couple of simple tests to prove the Starling works .. besides SK Combinator Calculus
-
 {   // The Starling And The Kestrel Sing Some Songs 
     const SK_I = S(K)(K)                                        // The Identity
 
@@ -218,7 +216,6 @@ const S = a => b => c => (a(c))(b(c))           // Starling
 
     // ... as it turns out, together the Starling and the Kestrel can sing any song --> SK Combinator Calculus
 }
-console.log(`Elapsed time: ${timer()/1000}s`)
 
 const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
 
@@ -234,9 +231,17 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
     const IOTA_KI = IOTA_K(IOTA_I)                                       // The Kite
     console.assert(IOTA_KI('first')('second') === 'second', 'The Kite returns the second value')
 
-    const IOTA_S = IOTA(IOTA(IOTA(IOTA(IOTA)))) // needs testing
+    const IOTA_S = IOTA(IOTA(IOTA(IOTA(IOTA)))) 
 
+    { // The Iota Starling And The Iota Kestrel Sing Some Songs
+        const IOTA_SK_I = IOTA_S(IOTA_K)(IOTA_K)                                        // The Identity
+        
+        console.assert(IOTA_SK_I(IOTA_SK_I) === IOTA_SK_I, 'The Identity of Identity is the Identity')
 
-
+        const IOTA_SK_KI = IOTA_K(IOTA_SK_I)                                       // The Kite
+        console.assert(IOTA_SK_KI('first')('second') === 'second', 'The Kite returns the second value')
+    }
 
 }
+
+console.log(`Elapsed time: ${timer()/1000}s`)
