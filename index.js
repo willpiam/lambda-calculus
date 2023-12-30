@@ -282,6 +282,28 @@ const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
 
 console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
-// prime
+const pesudoPrime = F => m => n => (EQ(ONE)(M))
+                                        (() => TRUE)      
+                                        ( () =>
+                                            (EQ(ZERO)(MOD(n)(m)))
+                                            (() => FALSE)              
+                                            (() => F(n)(PRED(m)))
+                                        )()()
 
-console.log(`Elapsed time: ${timer()/1000}s`)
+const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
+
+const SIX = MULT(TWO)(THREE)
+const EIGHT = MULT(TWO)(FOUR)
+const ELEVEN = SUCC(TEN)
+
+console.log(PRIME(FIVE).toString())
+
+console.assert(PRIME(FIVE) === TRUE, 'FIVE is prime')
+console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
+console.assert(PRIME(SEVEN) === TRUE, 'SEVEN is prime')
+console.assert(PRIME(EIGHT) === FALSE, 'EIGHT is not prime')
+console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
+console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
+console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
+
+console.log(`Elapsed time: ${timer()/1000}s`) 
