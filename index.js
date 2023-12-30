@@ -282,4 +282,6 @@ const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
 
 console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
+// prime
+
 console.log(`Elapsed time: ${timer()/1000}s`)
