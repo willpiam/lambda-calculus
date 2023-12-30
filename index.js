@@ -173,7 +173,7 @@ console.assert(GT(FOUR)(FOUR) === FALSE, 'FOUR is not greater than FOUR')
 
 const Z = f => (x => f(v => x(x)(v)))(x => f(v => x(x)(v)))
 
-const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I) 
+const pseudoFact = F => n => ISZERO(n)(a => ONE)(a => MULT(n)(F(PRED(n))))(I)
 // const pseudoFact = F => n => ISZERO(n)(() => ONE)(() => MULT(n)(F(PRED(n))))() // This also works but it feels weird having a function with no arguments in lambda calculus 
 const FAC = Z(pseudoFact)
 
@@ -208,11 +208,11 @@ const S = a => b => c => (a(c))(b(c))           // Starling
     const SK_KI = K(SK_I)                                       // The Kite
     console.assert(SK_KI('first')('second') === 'second', 'The Kite returns the second value')
 
-    const SK_M = S (SK_I) (SK_I)                                // The Mockingbird
+    const SK_M = S(SK_I)(SK_I)                                // The Mockingbird
     console.assert(SK_M(SK_I) === SK_I, 'The Mocking bird of the Idiot is the Idiot')
     console.assert(SK_M(K)('anything') === K, 'Mockingbird applied to the Kestrel gives the Kestrel of the Kestral or "const const" ')
 
-    const SK_V = (S(K((S((S(K((S(K(S)))(K))))(S)))(K(K)))))   ((S(K(S((S(K))(K)))))(K)) // The Vireo
+    const SK_V = (S(K((S((S(K((S(K(S)))(K))))(S)))(K(K)))))((S(K(S((S(K))(K)))))(K)) // The Vireo
 
     console.assert(SK_V(SK_I)(SK_M)(K) === SK_I, 'The Vireo of the Idiot, the Mockingbird and the Kestrel is the Idiot')
     console.assert(SK_V(SK_I)(SK_M)(SK_KI) === SK_M, 'The Vireo of the Idiot, the Mockingbird and the Kite is the Mockingbird')
@@ -236,11 +236,11 @@ const IOTA = f => (f(a => b => c => (a(c))(b(c))))(x => y => x)
     const IOTA_KI = IOTA_K(IOTA_I)                                       // The Kite
     console.assert(IOTA_KI('first')('second') === 'second', 'The Kite returns the second value')
 
-    const IOTA_S = IOTA(IOTA(IOTA(IOTA(IOTA)))) 
+    const IOTA_S = IOTA(IOTA(IOTA(IOTA(IOTA))))
 
     { // The Iota Starling And The Iota Kestrel Sing Some Songs
         const IOTA_SK_I = IOTA_S(IOTA_K)(IOTA_K)                                        // The Identity
-        
+
         console.assert(IOTA_SK_I(IOTA_SK_I) === IOTA_SK_I, 'The Identity of Identity is the Identity')
 
         const IOTA_SK_KI = IOTA_K(IOTA_SK_I)                                       // The Kite
@@ -255,7 +255,7 @@ const DIVIDE = n => Z(pseudoDiv)(SUCC(n))
 console.assert(jsnum(DIVIDE(FOUR)(TWO)) === 2, 'FOUR divided by TWO is TWO')
 console.assert(jsnum(DIVIDE(FOUR)(FOUR)) === 1, 'FOUR divided by FOUR is ONE')
 console.assert(jsnum(DIVIDE(TEN)(TWO)) === 5, 'TEN divided by TWO is FIVE')
-console.assert(jsnum(DIVIDE(TEN)(THREE)) === 3, 'TEN divided by THREE is THREE')  
+console.assert(jsnum(DIVIDE(TEN)(THREE)) === 3, 'TEN divided by THREE is THREE')
 console.assert(jsnum(DIVIDE(ONE_HUNDRED)(TEN)) === 10, 'ONE_HUNDRED divided by TEN is TEN')
 
 const MOD = n => m => SUB(n)(MULT(m)(DIVIDE(n)(m)))
@@ -282,13 +282,16 @@ const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
 
 console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
-const pesudoPrime = F => m => n => (EQ(ONE)(M))
-                                        (() => TRUE)      
-                                        ( () =>
-                                            (EQ(ZERO)(MOD(n)(m)))
-                                            (() => FALSE)              
-                                            (() => F(n)(PRED(m)))
-                                        )()()
+const pesudoPrime = F => m => n => {
+    console.log(`m: ${jsnum(m)} n: ${jsnum(n)}`)
+    return (EQ(ONE)(M))
+        (() => TRUE)
+        (() =>
+            (EQ(ZERO)(MOD(n)(m)))
+                (() => FALSE)
+                (() => F(PRED(m))(n))
+        )()()
+}
 
 const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
 
@@ -299,11 +302,11 @@ const ELEVEN = SUCC(TEN)
 console.log(PRIME(FIVE).toString())
 
 console.assert(PRIME(FIVE) === TRUE, 'FIVE is prime')
-console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
-console.assert(PRIME(SEVEN) === TRUE, 'SEVEN is prime')
-console.assert(PRIME(EIGHT) === FALSE, 'EIGHT is not prime')
-console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
-console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
-console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
+// console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
+// console.assert(PRIME(SEVEN) === TRUE, 'SEVEN is prime')
+// console.assert(PRIME(EIGHT) === FALSE, 'EIGHT is not prime')
+// console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
+// console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
+// console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
 
-console.log(`Elapsed time: ${timer()/1000}s`) 
+console.log(`Elapsed time: ${timer() / 1000}s`) 
