@@ -57,13 +57,13 @@ console.assert(BEQ(TRUE)(FALSE) === FALSE, 'The BEQ of TRUE and FALSE is FALSE')
 console.assert(BEQ(FALSE)(FALSE) === TRUE, 'The BEQ of FALSE and FALSE is TRUE')
 
 const jsnum = n => n(x => x + 1)(0)
-const show = n => console.log(n)
+// const show = n => console.log(n)
 
 const B = f => g => a => f(g(a))           // Bluebird (composition)
 
 console.assert(B(NOT)(NOT)(TRUE) === TRUE, 'The Bluebird of NOT and NOT of TRUE is TRUE')
 
-const showNumber = B(show)(jsnum)          // display chuch number (using Bluebird/composition)
+const showNumber = B(console.log)(jsnum)          // display chuch number (using Bluebird/composition)
 const ZERO = f => a => a
 
 showNumber(ZERO)

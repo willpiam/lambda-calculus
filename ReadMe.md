@@ -37,6 +37,15 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 
 - What is the difference between **Lambda Calculus** and **Combinatory Logic**?
 
+### JavaScript Helpers
+
+| Name              | Description             |
+|-------------------|-------------------------|
+| startTimer        | Time code execution                                               |
+| jsnum             | Convert a Church numeral to a JavaScript number                   |
+| showNumber        | Convert from a Church numeral and print                           |
+| toChurchNumeral   | Build a Church numeral equal to the provided JavaScript number    |
+
 ### Me
 
 Follow my on 𝕏  [@william00000010](https://x.com/william00000010)
