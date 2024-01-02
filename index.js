@@ -68,6 +68,7 @@ const ZERO = f => a => a
 
 showNumber(ZERO)
 
+
 const ONE = f => a => f(a)
 showNumber(ONE)
 
@@ -86,6 +87,16 @@ const SEVEN = ADD(TWO)(FIVE)
 console.assert(jsnum(THREE) === 3, 'THREE is 3')
 console.assert(jsnum(FIVE) === 5, 'FIVE is 5')
 console.assert(jsnum(SEVEN) === 7, 'SEVEN is 7')
+
+const toChurchNumeral = n => eval(`f => a => ${'f('.repeat(n)}a${')'.repeat(n)}`)
+
+{   // Test toChurch
+    console.assert(jsnum(toChurchNumeral(0)) === 0, 'toChurch(0) is 0')
+    console.assert(jsnum(toChurchNumeral(1)) === 1, 'toChurch(1) is 1')
+
+    console.assert(jsnum(toChurchNumeral(1234)) === 1234, 'toChurch(1234) is 1234')
+
+}
 
 const MULT = B                              // Multiplication is just the composition of chuch numerals
 
@@ -292,6 +303,8 @@ const pesudoPrime = F => m => n => ISZERO(PRED(m))
 
 // const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
 const PRIME = n => Z(pesudoPrime)(SUCC(DIVIDE(n)(TWO)))(n)
+
+console.log(PRIME.toString())
 
 const SIX = MULT(TWO)(THREE)
 const EIGHT = MULT(TWO)(FOUR)
