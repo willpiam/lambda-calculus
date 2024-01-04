@@ -16,7 +16,6 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | TWO          | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
 | THREE        | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
 | Starling     | `S := λabc.ac(bc)`                         |                                                      |
-| Vireo        | ``                                         | |
 | Iota         | `IOTA := λf.(f λabc.ac(bc))λxy.x`          | |
 
 ## Resources
@@ -33,11 +32,17 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 - [SKI Combinator Calculus](https://en.wikipedia.org/wiki/SKI_combinator_calculus)
 - [Division with Church Numerals](https://en.wikipedia.org/wiki/Church_encoding#Division)
 
-### Questions
+## Issues And Corrections
 
-- What is the difference between **Lambda Calculus** and **Combinatory Logic**?
+If you find anything wrong with this project (*including this ReadMe*) please open an issue and I will address it promptly. 
 
-### JavaScript Helpers
+## Running the program
+
+Run the program with nodejs
+
+    node index.js
+
+## JavaScript Helpers
 
 | Name              | Description             |
 |-------------------|-------------------------|
@@ -46,7 +51,7 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | showNumber        | Convert from a Church numeral and print                           |
 | toChurchNumeral   | Build a Church numeral equal to the provided JavaScript number    |
 
-### Me
+## Me
 
 Follow my on 𝕏  [@william00000010](https://x.com/william00000010)
 

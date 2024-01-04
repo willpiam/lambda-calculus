@@ -95,7 +95,6 @@ const toChurchNumeral = n => eval(`f => a => ${'f('.repeat(n)}a${')'.repeat(n)}`
     console.assert(jsnum(toChurchNumeral(1)) === 1, 'toChurch(1) is 1')
 
     console.assert(jsnum(toChurchNumeral(1234)) === 1234, 'toChurch(1234) is 1234')
-
 }
 
 const MULT = B                              // Multiplication is just the composition of chuch numerals
@@ -294,12 +293,12 @@ const ONE_HUNDRED_ONE = SUCC(ONE_HUNDRED)
 console.assert(ODD(ONE_HUNDRED_ONE) === TRUE, 'ONE HUNDRED ONE is odd')
 
 const pesudoPrime = F => m => n => ISZERO(PRED(m))
-        (() => TRUE)
-        (
-            (ISZERO(MOD(n)(m)))
-                (() => FALSE)
-                (() => F(PRED(m))(n))
-        )()
+    (() => TRUE)
+    (
+        (ISZERO(MOD(n)(m)))
+            (() => FALSE)
+            (() => F(PRED(m))(n))
+    )()
 
 // const PRIME = n => Z(pesudoPrime)(PRED(n))(n)
 const PRIME = n => Z(pesudoPrime)(SUCC(DIVIDE(n)(TWO)))(n)
@@ -308,7 +307,7 @@ console.log(PRIME.toString())
 
 const SIX = MULT(TWO)(THREE)
 const EIGHT = MULT(TWO)(FOUR)
-const ELEVEN = SUCC(TEN)
+const ELEVEN = toChurchNumeral(11)
 
 console.assert(PRIME(FIVE) === TRUE, 'FIVE is prime')
 console.assert(PRIME(SIX) === FALSE, 'SIX is not prime')
@@ -318,11 +317,12 @@ console.assert(PRIME(NINE) === FALSE, 'NINE is not prime')
 console.assert(PRIME(TEN) === FALSE, 'TEN is not prime')
 console.assert(PRIME(ELEVEN) === TRUE, 'ELEVEN is prime')
 
-const ONE_HUNDRED_SEVENTY_THREE = ADD(ADD(ONE_HUNDRED)(MULT(TEN)(SEVEN)))(THREE)
+// const ONE_HUNDRED_SEVENTY_THREE = ADD(ADD(ONE_HUNDRED)(MULT(TEN)(SEVEN)))(THREE)
+const ONE_HUNDRED_SEVENTY_THREE = toChurchNumeral(173)
 showNumber(ONE_HUNDRED_SEVENTY_THREE)
 
-console.log(`Elapsed time: ${timer()}s`) 
+console.log(`Elapsed time: ${timer()}s`)
 
 console.assert(PRIME(ONE_HUNDRED_SEVENTY_THREE) === TRUE, 'ONE_HUNDRED_SEVENTY_THREE is prime')
 
-console.log(`Elapsed time: ${timer()}s`) 
+console.log(`Elapsed time: ${timer()}s`)
