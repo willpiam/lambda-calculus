@@ -24,10 +24,10 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 
 Please watch Gabriel's fantastic presentation *A Flock Of Functions* which served as inspiration and as a starting point for this project.
 
-- https://x.com/g_lebec
-- https://youtu.be/3VQ382QG-y4
-- https://youtu.be/pAnLQ9jwN-E 
-- https://github.com/glebec/lambda-talk/tree/master
+- [@g_lebec on 𝕏](https://x.com/g_lebec)
+- [Part One - Fullstack Academy](https://youtu.be/3VQ382QG-y4)
+- [Part Two](https://youtu.be/pAnLQ9jwN-E) 
+- [A Flock Of Functions - GitHub](https://github.com/glebec/lambda-talk/tree/master)
 - [Vireo in SK Combinator Calculus](https://speakerdeck.com/glebec/lambda-calc-talk-smartly-dot-io-version?slide=197)
 
 ### Wikipedia
