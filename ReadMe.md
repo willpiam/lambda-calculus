@@ -21,6 +21,9 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 ## Resources
 
 ### Gabriel Lebec 
+
+Please watch Gabriel's fantastic presentation *A Flock Of Functions* which served as inspiration and as a starting point for this project.
+
 - https://x.com/g_lebec
 - https://youtu.be/3VQ382QG-y4
 - https://youtu.be/pAnLQ9jwN-E 
