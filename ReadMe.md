@@ -37,9 +37,13 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | GT               | ``                      |                                                      |
 | Factorial        | `` |                                                      |
 | SumRange         | ``                      |                                                      |
-
 | Starling         | `S := λabc.ac(bc)`                         |                                                      |
 | Iota             | `IOTA := λf.(f λabc.ac(bc))λxy.x`          | |
+| Division         | ``               | Division using Church numerals                      |
+| Modulus          | ``               | Modulus using Church numerals                       |
+| Even             | ``               |                                                      |
+| Odd              | ``               |                                                      |
+| Prime            | ``               |                                                      |
 
 ## Resources
 
@@ -76,6 +80,10 @@ Run the program with nodejs
 | jsnum             | Convert a Church numeral to a JavaScript number                   |
 | showNumber        | Convert from a Church numeral and print                           |
 | toChurchNumeral   | Build a Church numeral equal to the provided JavaScript number    |
+
+## Things To Do
+
+- [ ] Create a list to hold chuch numerals
 
 ## Me
 
