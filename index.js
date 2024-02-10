@@ -322,6 +322,7 @@ const ONE_HUNDRED_SEVENTY_THREE = toChurchNumeral(173)
 showNumber(ONE_HUNDRED_SEVENTY_THREE)
 
 console.log(`Elapsed time: ${timer()}s`)
+console.log('About to check 173 is a prime number')
 
 console.assert(PRIME(ONE_HUNDRED_SEVENTY_THREE) === TRUE, 'ONE_HUNDRED_SEVENTY_THREE is prime')
 

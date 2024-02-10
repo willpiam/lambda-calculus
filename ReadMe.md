@@ -2,21 +2,44 @@
 
 In an effort to understand Lambda Calculus, I have created this repository. The goal is to represent Lambda Calculus in JavaScript. Named constants are allowed, but only for human readability. These constants may not be used to achieve recursion. Assertions are used throughout the program to demonstrate correct operation without polluting the output logs. Non-Lambda Calculus code is permitted only to display the state or test the logic of the program.
 
-| Name         | Symbolic Notation                          | Description                                          |
-|--------------|--------------------------------------------|------------------------------------------------------|
-| Idiot        | `I := λa.a`                                | Returns its argument.                                |
-| Mockingbird  | `M := λf.ff`                               | Applies a function to itself.                        |
-| Kestrel      | `K := λab.a`                               | Ignores its second argument and returns the first.   |
-| Kite         | `KI := λab.b`                              | Ignores its first argument and returns the second.   |
-| Bluebird     | `B := λfga.f(ga)`                          | Function composition                                 |
-| Blackbird    | `B1 := BBB`                                |                                                      |
-| SUCC         | `SUCC := λnfx.f(n f x)`                    | Increments a church numeral                          |
-| Z            | `Z := λf.(λx.f(λv.xxv))(λx.f(λv.xxv))`     | Fixed point combinator                               |
-| ONE          | `ONE := λfa.fa`                            | Church numeral ONE                                   |
-| TWO          | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
-| THREE        | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
-| Starling     | `S := λabc.ac(bc)`                         |                                                      |
-| Iota         | `IOTA := λf.(f λabc.ac(bc))λxy.x`          | |
+| Name           | Symbolic Notation                          | Description                                          |
+|----------------|--------------------------------------------|------------------------------------------------------|
+| Idiot            | `I := λa.a`                                | Returns its argument.                                |
+| Mockingbird      | `M := λf.ff`                               | Applies a function to itself.                        |
+| Kestrel / True   | `K := λab.a`                               | Ignores its second argument and returns the first.   |
+| Kite / False     | `KI := λab.b`                              | Ignores its first argument and returns the second.   |
+| Cardinal         |                           |     |
+| Not              |                        |                                    |
+| And              |                        |                                    |
+| Or               |                        |                                    |
+| Boolean Equality |                        |                                    |
+| Bluebird         | `B := λfga.f(ga)`                          | Function composition                                 |
+| Zero             | `ZERO := λfa.a`                            | Church numeral ZERO                                  |
+| Blackbird        | `B1 := BBB`                                |                                                      |
+| SUCC             | `SUCC := λnfx.f(n f x)`                    | Increments a church numeral                          |
+| ADD              | ``                                         | Adds two church numerals                             |
+| Mult             | `MUL := B`                                 |                        |  
+| Thrush           | `Th := λaf.fa `                           |                                                      |
+| Pow              | `POW := Th`                                 |                                                      |
+| Z                | `Z := λf.(λx.f(λv.xxv))(λx.f(λv.xxv))`     | Fixed point combinator                               |
+| ONE              | `ONE := λfa.fa`                            | Church numeral ONE                                   |
+| TWO              | `TWO := λfa.f(fa)`                         | Church numeral TWO                                   |
+| THREE            | `THREE := λfa.f(f(fa))`                    | Church numeral THREE                                 |
+| IsZero           | ``             |                                                      |
+| Vireo            | `V := λabf.fab`                            | A pair. The simplest data structure                  |
+| First            | ``                            |                                                      |
+| Second           | ``                            |                                                      |
+| Phi              | ``                      |                                                      |
+| Pred             | ``                      |                                                      |
+| Sub              | ``                      |                                                      |
+| LEQ              | ``                      |                                                      |
+| Equality         | ``                      |                                                      |
+| GT               | ``                      |                                                      |
+| Factorial        | `` |                                                      |
+| SumRange         | ``                      |                                                      |
+
+| Starling         | `S := λabc.ac(bc)`                         |                                                      |
+| Iota             | `IOTA := λf.(f λabc.ac(bc))λxy.x`          | |
 
 ## Resources
 
@@ -58,7 +81,7 @@ Run the program with nodejs
 
 Follow my on 𝕏  [@william00000010](https://x.com/william00000010)
 
-Cardano --> $wildoy
+Cardano --> [$wildoy](https://handle.me/wildoy)
 
 ENS --> [williamdoyle.eth](https://app.ens.domains/williamdoyle.eth)
 
