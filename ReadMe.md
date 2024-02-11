@@ -8,16 +8,16 @@ In an effort to understand Lambda Calculus, I have created this repository. The 
 | Mockingbird      | `M := λf.ff`                               | Applies a function to itself.                        |
 | Kestrel / True   | `K := λab.a`                               | Ignores its second argument and returns the first.   |
 | Kite / False     | `KI := λab.b`                              | Ignores its first argument and returns the second.   |
-| Cardinal         |                           |     |
-| Not              |                        |                                    |
-| And              |                        |                                    |
-| Or               |                        |                                    |
-| Boolean Equality |                        |                                    |
+| Cardinal         | `C := λfab.fba`                            |     |
+| Not              | `NOT := λp.p KI K`                         |                                    |
+| And              | `AND := λpq.pqp`             |                                    |
+| Or               | `OR := λpq.ppq`              |                                    |
+| Boolean Equality | `BEQ := λpq.pq (NOT q)`      |                                    |
 | Bluebird         | `B := λfga.f(ga)`                          | Function composition                                 |
 | Zero             | `ZERO := λfa.a`                            | Church numeral ZERO                                  |
 | Blackbird        | `B1 := BBB`                                |                                                      |
 | SUCC             | `SUCC := λnfx.f(n f x)`                    | Increments a church numeral                          |
-| ADD              | ``                                         | Adds two church numerals                             |
+| ADD              | `ADD := λnk.n (SUCC) k`                      | Adds two church numerals                             |
 | Mult             | `MUL := B`                                 |                        |  
 | Thrush           | `Th := λaf.fa `                           |                                                      |
 | Pow              | `POW := Th`                                 |                                                      |
